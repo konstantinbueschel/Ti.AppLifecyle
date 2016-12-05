@@ -64,7 +64,7 @@ public class ApplifecycleModule extends KrollModule {
 	}
 
 	@Kroll.onAppCreate
-	public void onAppCreate(final TiApplication app) {
+	public static void onAppCreate(final TiApplication app) {
 		mApp = app;
 
 		Context ctx = TiApplication.getInstance().getApplicationContext();
