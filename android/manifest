@@ -2,9 +2,9 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 1.0.5
-apiversion: 2
-architectures: armeabi armeabi-v7a x86
+version: 2.0.0
+apiversion: 3
+architectures: armeabi-v7a x86 x86_64
 description: Ti.AppLifecycle: module for detecting of app events like 'paused', 'resumed', 'screenoff' and 'screenon'
 author: Rainer Schleevoigt
 license: Specify your license
@@ -15,4 +15,4 @@ name: applifecycle
 moduleid: de.appwerft.applifecycle
 guid: 6231d0c1-6f68-4d62-a261-57bc1b4c6899
 platform: android
-minsdk: 3.5.1.GA
+minsdk: 6.0.0.GA

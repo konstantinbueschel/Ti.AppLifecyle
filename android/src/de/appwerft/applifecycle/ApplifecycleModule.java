@@ -39,12 +39,9 @@ public class ApplifecycleModule extends KrollModule {
 	public static long counter = 0;
 	private static AppStateListener appStateListener = null;
 	private static BroadcastReceiver mReceiver = null;
-	private static TiProperties appProperties = TiApplication.getInstance()
-			.getAppProperties();
-	private static int testIntervalForeground = appProperties.getInt(
-			"LIFECYCLE_TESTINTERVAL", 100);
-	private static int testIntervalBackground = appProperties.getInt(
-			"LIFECYCLE_TESTINTERVAL_BACKGROUND", 500);
+	private static TiProperties appProperties = TiApplication.getInstance().getAppProperties();
+	private static int testIntervalForeground = appProperties.getInt("LIFECYCLE_TESTINTERVAL", 100);
+	private static int testIntervalBackground = appProperties.getInt("LIFECYCLE_TESTINTERVAL_BACKGROUND", 500);
 
 	public ApplifecycleModule() {
 		super();
@@ -72,8 +69,7 @@ public class ApplifecycleModule extends KrollModule {
 
 		Context ctx = TiApplication.getInstance().getApplicationContext();
 		/* Preparing of broadcatsReceiver for screenchanging */
-		final IntentFilter intentFilter = new IntentFilter(
-				Intent.ACTION_SCREEN_ON);
+		final IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
 		mReceiver = new ScreenReceiver();
 		ctx.registerReceiver(mReceiver, intentFilter);
@@ -104,8 +100,7 @@ public class ApplifecycleModule extends KrollModule {
 
 	static public TaskTestResult _isInForeground() {
 		try {
-			TaskTestResult result = new ForegroundCheckTask().execute(
-					TiApplication.getInstance().getApplicationContext()).get();
+			TaskTestResult result = new ForegroundCheckTask().execute(TiApplication.getInstance().getApplicationContext()).get();
 			return result;
 		} catch (InterruptedException e) {
 			e.printStackTrace();

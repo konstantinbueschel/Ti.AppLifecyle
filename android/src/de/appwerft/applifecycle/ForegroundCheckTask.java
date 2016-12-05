@@ -17,26 +17,22 @@ class ForegroundCheckTask extends AsyncTask<Context, Void, TaskTestResult> {
 
 	@SuppressWarnings("deprecation")
 	private TaskTestResult isAppOnForeground(Context context) {
-		ActivityManager am = (ActivityManager) context
-				.getSystemService(Context.ACTIVITY_SERVICE);
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		/* retreiving packagename of toppest task */
 		String foregroundTaskPackageName = "";
 		if (Build.VERSION.SDK_INT > 20) {
 			foregroundTaskPackageName = am.getRunningAppProcesses().get(0).processName;
 		} else {
-			foregroundTaskPackageName = am.getRunningTasks(1).get(0).topActivity
-					.getPackageName();
+			foregroundTaskPackageName = am.getRunningTasks(1).get(0).topActivity.getPackageName();
 		}
 		PackageManager pm = context.getPackageManager();
 		PackageInfo foregroundAppPackageInfo = null;
 		try {
-			foregroundAppPackageInfo = pm.getPackageInfo(
-					foregroundTaskPackageName, 0);
+			foregroundAppPackageInfo = pm.getPackageInfo(foregroundTaskPackageName, 0);
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
 		String foregroundTaskAppId = foregroundAppPackageInfo.applicationInfo.packageName;
-		return new TaskTestResult(context.getPackageName().equals(
-				foregroundTaskAppId), foregroundTaskAppId);
+		return new TaskTestResult(context.getPackageName().equals(foregroundTaskAppId), foregroundTaskAppId);
 	}
 }
